@@ -48,13 +48,13 @@ func _physics_process(delta):
 	if !animation_player.is_playing():
 		is_locked = false
 		
-	if Input.is_action_just_pressed("shoot"):
-		if !gun_animation.is_playing():
-			gun_animation.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().get_parent().add_child(instance)
+	#if Input.is_action_just_pressed("shoot"):
+		#if !gun_animation.is_playing():
+			#gun_animation.play("shoot")
+			#instance = bullet.instantiate()
+			#instance.position = gun_barrel.global_position
+			#instance.transform.basis = gun_barrel.global_transform.basis
+			#get_parent().get_parent().add_child(instance)
 		
 	#currently this locks any ongoing animation (toggle)
 	if Input.is_action_just_pressed("interact"):
@@ -80,13 +80,11 @@ func _physics_process(delta):
 		
 		#aiming whiling moving
 		if Input.is_action_pressed("aim"):
-			print("aiming")
 			is_aiming = true
 			SPEED = aiming_speed
 			visuals.rotation = Vector3.ZERO
 			
 		if Input.is_action_just_released("aim"):
-			print("stop aiming")
 			is_aiming = false
 
 				

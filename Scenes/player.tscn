@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6vk43xiu5l88"]
+[gd_scene load_steps=22 format=3 uid="uid://c6vk43xiu5l88"]
 
 [ext_resource type="Texture2D" uid="uid://cqupl4w17wqdn" path="res://Textures/green_grid.png" id="1_8px2x"]
-[ext_resource type="Texture2D" uid="uid://cqupl4w17wqdn" path="res://Textures/green_grid.png" id="2_qilld"]
 [ext_resource type="PackedScene" uid="uid://2ofpufno0t6x" path="res://Scenes/gun.tscn" id="2_vmdxr"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_61bx1"]
 
@@ -13,17 +12,17 @@ albedo_texture = ExtResource("1_8px2x")
 [sub_resource type="SphereMesh" id="SphereMesh_xvld0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr8yf"]
-albedo_texture = ExtResource("2_qilld")
+albedo_texture = ExtResource("1_8px2x")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ldivr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dv2ns"]
-albedo_texture = ExtResource("2_qilld")
+albedo_texture = ExtResource("1_8px2x")
 
 [sub_resource type="BoxMesh" id="BoxMesh_r7jli"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnb67"]
-albedo_texture = ExtResource("2_qilld")
+albedo_texture = ExtResource("1_8px2x")
 
 [sub_resource type="BoxMesh" id="BoxMesh_xfnjh"]
 
@@ -162,6 +161,8 @@ _data = {
 }
 
 [node name="player" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("3_61bx1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -169,10 +170,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1xr3q")
 
 [node name="camera_mount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+transform = Transform3D(0.999781, 0.0209424, 0, -0.0209424, 0.999781, 0, 0, 0, 1, 0, 5.89, 5.61)
 
 [node name="Camera3D" type="Camera3D" parent="camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 0.964193, 0.265203, 0, -0.265203, 0.964193, 0, 0.578265, 0)
+transform = Transform3D(1, 0, 0, 0, 0.876265, 0.48183, 0, -0.48183, 0.876265, 0, 0, 0)
+size = 5.762
 
 [node name="visuals" type="Node3D" parent="."]
 
@@ -233,3 +235,5 @@ light_size = 2.0
 spot_range = 30.0
 spot_attenuation = 0.108819
 spot_angle_attenuation = 0.535887
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

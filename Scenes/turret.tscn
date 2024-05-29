@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1lcav6kfiqu6"]
+
+[ext_resource type="Script" path="res://Scripts/turret.gd" id="1_xh8rv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rkh7q"]
+size = Vector3(1.52115, 1.71225, 1.56592)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o6bhp"]
+top_radius = 0.25
+bottom_radius = 0.75
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_f3n8i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1rvhn"]
+top_radius = 0.25
+height = 1.0
+
+[sub_resource type="Animation" id="Animation_hm1aw"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/pivot_point/barrel:mesh:bottom_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.6, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_xxoq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/pivot_point/barrel:mesh:bottom_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jp7r0"]
+_data = {
+"RESET": SubResource("Animation_xxoq3"),
+"shoot": SubResource("Animation_hm1aw")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3v82f"]
+height = 1.47887
+radius = 7.68825
+
+[node name="turret" type="Node3D"]
+script = ExtResource("1_xh8rv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121613, 0.588974, 0.0303345)
+shape = SubResource("BoxShape3D_rkh7q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CylinderMesh_o6bhp")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.915304, 0)
+mesh = SubResource("SphereMesh_f3n8i")
+
+[node name="pivot_point" type="Node3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815912, 0.0520751)
+
+[node name="barrel" type="MeshInstance3D" parent="StaticBody3D/pivot_point"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.6)
+mesh = SubResource("CylinderMesh_1rvhn")
+skeleton = NodePath("../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="StaticBody3D/pivot_point/barrel"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.436227, -0.0247915)
+target_position = Vector3(0, 0, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jp7r0")
+}
+speed_scale = 4.0
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.850655, 0, -0.525724, 0, 1, 0, 0.525724, 0, 0.850655, 0, 0.948956, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_3v82f")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
