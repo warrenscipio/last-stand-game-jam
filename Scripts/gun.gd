@@ -12,12 +12,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
-	if Input.is_action_just_pressed("shoot"):
-		
-		if !gun_animation.is_playing():
-			gun_animation.play("shoot")
-			bullet_instance = bullet.instantiate()
-			bullet_instance.position = gun_barrel.global_position
-			bullet_instance.transform.basis = gun_barrel.global_transform.basis
-			get_node("/root/world").add_child(bullet_instance)
+	pass
+	#if Input.is_action_just_pressed("shoot"):
+		#
+		#if !gun_animation.is_playing():
+			#gun_animation.play("shoot")
+			#bullet_instance = bullet.instantiate()
+			#bullet_instance.position = gun_barrel.global_position
+			#bullet_instance.transform.basis = gun_barrel.global_transform.basis
+			#get_node("/root/world").add_child(bullet_instance)

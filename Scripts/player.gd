@@ -1,7 +1,11 @@
 extends CharacterBody3D
 
+signal try_pickup(player)
+signal throw_held_item(throwFromTransform)
 
-var bullet = load("res://Scenes/bullet.tscn")
+var bullet = preload("res://Scenes/bullet.tscn")
+
+var physics_box = preload("res://Scenes/physics_box.tscn")
 var instance
 @onready var camera_mount = $camera_mount
 @onready var visuals = $visuals
@@ -9,6 +13,7 @@ var instance
 @onready var gun_animation = $visuals/gun/AnimationPlayer
 @onready var gun_barrel = $visuals/gun/RayCast3D
 @onready var player_cam = $camera_mount/Camera3D
+@onready var collisionShape = $CollisionShape3D
 
 var SPEED = 5
 const JUMP_VELOCITY = 8
@@ -19,6 +24,7 @@ var aiming_speed = 2.0
 #if I need to lock the character in an animation 
 var is_locked = false
 var is_aiming = false
+var itemHeld = null
 var current_mouse_pos = null
 
 @export var sens_horiz = 0.2
@@ -48,13 +54,21 @@ func _physics_process(delta):
 	if !animation_player.is_playing():
 		is_locked = false
 		
-	#if Input.is_action_just_pressed("shoot"):
-		#if !gun_animation.is_playing():
-			#gun_animation.play("shoot")
-			#instance = bullet.instantiate()
-			#instance.position = gun_barrel.global_position
-			#instance.transform.basis = gun_barrel.global_transform.basis
-			#get_parent().get_parent().add_child(instance)
+	if Input.is_action_just_pressed("shoot"):
+		if !gun_animation.is_playing():
+			gun_animation.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().get_parent().add_child(instance)
+	
+	# broadly speaking, the player shouldn't manage the physics of throwing
+	# or activating, deactivating it.
+	if Input.is_action_just_pressed("throw"):
+		emit_signal("throw_held_item", gun_barrel.global_transform)
+		
+	if Input.is_action_just_pressed("pickup"):
+		emit_signal("try_pickup", self)
 		
 	#currently this locks any ongoing animation (toggle)
 	if Input.is_action_just_pressed("interact"):

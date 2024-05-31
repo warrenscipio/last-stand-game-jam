@@ -16,21 +16,6 @@ height = 0.5
 top_radius = 0.25
 height = 1.0
 
-[sub_resource type="Animation" id="Animation_hm1aw"]
-resource_name = "shoot"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody3D/pivot_point/barrel:mesh:bottom_radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.5, 0.6, 0.5]
-}
-
 [sub_resource type="Animation" id="Animation_xxoq3"]
 length = 0.001
 tracks/0/type = "value"
@@ -44,6 +29,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.5]
+}
+
+[sub_resource type="Animation" id="Animation_hm1aw"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/pivot_point/barrel:mesh:bottom_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.6, 0.5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jp7r0"]
