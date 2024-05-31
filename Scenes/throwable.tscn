@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0dut3low8p51"]
+
+[ext_resource type="Script" path="res://Scripts/throwable.gd" id="1_7rdkb"]
+[ext_resource type="PackedScene" uid="uid://b80auskecjwjf" path="res://Scenes/physics_box.tscn" id="2_4wpk7"]
+
+[node name="Throwable" type="Node3D"]
+script = ExtResource("1_7rdkb")
+
+[node name="physicsBox" parent="." instance=ExtResource("2_4wpk7")]
+collision_layer = 1
+collision_mask = 1

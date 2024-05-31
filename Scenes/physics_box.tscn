@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b80auskecjwjf"]
+
+[ext_resource type="Material" uid="uid://b018awwksjln" path="res://Textures/basicEnvironment/materials/greenGrid.tres" id="1_ojc0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhv85"]
+size = Vector3(2, 2, 2)
+
+[node name="physicsBox" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_ojc0k")
+size = Vector3(2, 2, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uhv85")
