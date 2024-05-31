@@ -52,4 +52,3 @@ radius = 2.0
 
 [node name="Throwable" parent="." instance=ExtResource("4_gtp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21475, -9.87451)
-maxPickupDistance = 10

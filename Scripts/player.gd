@@ -12,8 +12,10 @@ var instance
 @onready var animation_player = $visuals/AnimationPlayer
 @onready var gun_animation = $visuals/gun/AnimationPlayer
 @onready var gun_barrel = $visuals/gun/RayCast3D
-@onready var player_cam = $camera_mount/Camera3D
+@onready var world_cam = $"../../Camera3D"
 @onready var collisionShape = $CollisionShape3D
+@export var z_depth = 30
+@onready var ray_cast_3d = $"../../Camera3D/RayCast3D"
 
 var SPEED = 5
 const JUMP_VELOCITY = 8
@@ -35,17 +37,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	#good to turn off for debugging
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * sens_horiz))
-
-		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vert))
-		if !is_aiming:
-			
-			visuals.rotate_y(deg_to_rad(event.relative.x * sens_horiz))
-		#grab mouse data for this frame for other functions
+		#this almost works
+		ray_cast_3d.global_position = world_cam.project_position(get_viewport().get_mouse_position(),0)
+		RayCast3D
+		print(ray_cast_3d.global_position)
+		look_at(ray_cast_3d.get_collision_point())
 		current_mouse_pos = event
 
 
@@ -114,8 +115,8 @@ func _physics_process(delta):
 				if animation_player.current_animation != "walking":
 					animation_player.play("walking")
 					
-			if !is_aiming:
-				visuals.look_at(position + direction)
+			
+			visuals.look_at(position + direction)
 			
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED

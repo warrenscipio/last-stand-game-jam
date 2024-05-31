@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cquswvkse0n3a"]
+[gd_scene load_steps=5 format=3 uid="uid://cquswvkse0n3a"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_trqwm"]
 
@@ -15,22 +15,9 @@ emission_enabled = true
 emission = Color(1, 1, 0.290196, 1)
 emission_energy_multiplier = 12.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enn1j"]
-albedo_color = Color(0.988235, 0.854902, 0.243137, 1)
-emission_enabled = true
-emission = Color(0.952941, 0.858824, 0.239216, 1)
-emission_energy_multiplier = 8.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vrong"]
-direction = Vector3(0, 0, 1)
-initial_velocity_min = 3.0
-initial_velocity_max = 5.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_axwjj"]
-size = Vector3(0.04, 0.04, 0.04)
-
 [node name="bullet" type="Node3D"]
 script = ExtResource("1_trqwm")
+speed = 20
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_jtdls")
@@ -41,16 +28,6 @@ light_color = Color(1, 0.956863, 0.211765, 1)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -1)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.580792)
-material_override = SubResource("StandardMaterial3D_enn1j")
-emitting = false
-amount = 20
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_vrong")
-draw_pass_1 = SubResource("BoxMesh_axwjj")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

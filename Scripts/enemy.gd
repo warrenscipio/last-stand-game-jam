@@ -7,6 +7,7 @@ var health = 2
 
 @export var player_path := "/root/world/NavigationRegion3D/player"
 @onready var navigation_agent_3d = $NavigationAgent3D
+@onready var gpu_particles_3d = $GPUParticles3D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,5 +28,7 @@ func _process(delta):
 
 func hit():
 	health -= 1
+	gpu_particles_3d.emitting = true
 	if health <=0:
+		
 		queue_free()
