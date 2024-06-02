@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cquswvkse0n3a"]
+[gd_scene load_steps=6 format=3 uid="uid://cquswvkse0n3a"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_trqwm"]
+[ext_resource type="PackedScene" uid="uid://b7o6sqlkjhxpy" path="res://Scenes/burger.tscn" id="2_801vh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icic2"]
 albedo_color = Color(0.733333, 0.67451, 0.0392157, 1)
@@ -19,19 +20,24 @@ emission_energy_multiplier = 12.0
 script = ExtResource("1_trqwm")
 speed = 20
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_jtdls")
-surface_material_override/0 = SubResource("StandardMaterial3D_ugtfx")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
-light_color = Color(1, 0.956863, 0.211765, 1)
+[node name="burger" parent="." instance=ExtResource("2_801vh")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RayCast3D"]
+mesh = SubResource("BoxMesh_jtdls")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ugtfx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RayCast3D/MeshInstance3D"]
+light_color = Color(1, 0.956863, 0.211765, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 autostart = true
 
+[connection signal="body_entered" from="burger" to="." method="_on_burger_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

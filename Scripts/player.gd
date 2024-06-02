@@ -45,7 +45,6 @@ func _input(event):
 		#this almost works
 		ray_cast_3d.global_position = world_cam.project_position(get_viewport().get_mouse_position(),0)
 		RayCast3D
-		print(ray_cast_3d.global_position)
 		look_at(ray_cast_3d.get_collision_point())
 		current_mouse_pos = event
 

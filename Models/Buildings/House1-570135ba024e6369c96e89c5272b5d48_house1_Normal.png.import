@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bfpjiwagp2ky1"
+path.s3tc="res://.godot/imported/House1-570135ba024e6369c96e89c5272b5d48_house1_Normal.png-754da420e81cbeb760396c743977f0ee.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "adf36c69b15f327d992d2ba096681f45"
+}
+
+[deps]
+
+source_file="res://Models/Buildings/House1-570135ba024e6369c96e89c5272b5d48_house1_Normal.png"
+dest_files=["res://.godot/imported/House1-570135ba024e6369c96e89c5272b5d48_house1_Normal.png-754da420e81cbeb760396c743977f0ee.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Buildings/House1-570135ba024e6369c96e89c5272b5d48_house1_Normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

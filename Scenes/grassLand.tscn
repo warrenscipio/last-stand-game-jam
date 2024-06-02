@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl83sqne4fqih"]
+
+[ext_resource type="PackedScene" uid="uid://bnc7g6l5a4k7x" path="res://Models/Plants/PP_Meadow_08.fbx" id="1_xofxu"]
+
+[node name="grassLand" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Root Scene" parent="." instance=ExtResource("1_xofxu")]
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265533, 0.977753, 0.0829735)
+visible = false
+use_collision = true
+size = Vector3(23.039, 2.95551, 22.5543)

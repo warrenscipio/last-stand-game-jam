@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://vrvymxnrwf7f"]
+
+[ext_resource type="PackedScene" uid="uid://d0wcdmbsxpj7w" path="res://Models/Plants/PP_Forest_Mountain_Moss_02.fbx" id="1_4nc3h"]
+
+[node name="PP_Forest_Mountain_Moss_02" instance=ExtResource("1_4nc3h")]
