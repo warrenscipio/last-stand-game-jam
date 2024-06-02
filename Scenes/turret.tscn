@@ -1,19 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1lcav6kfiqu6"]
+[gd_scene load_steps=13 format=3 uid="uid://d1lcav6kfiqu6"]
 
 [ext_resource type="Script" path="res://Scripts/turret.gd" id="1_xh8rv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkh7q"]
 size = Vector3(1.52115, 1.71225, 1.56592)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8wjw"]
+albedo_color = Color(0.133333, 0.545098, 0.972549, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_o6bhp"]
+material = SubResource("StandardMaterial3D_m8wjw")
 top_radius = 0.25
 bottom_radius = 0.75
 height = 0.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5c2hg"]
+albedo_color = Color(0.133333, 0.545098, 0.972549, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_f3n8i"]
+material = SubResource("StandardMaterial3D_5c2hg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n4eb"]
+albedo_color = Color(0.133333, 0.545098, 0.972549, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1rvhn"]
-top_radius = 0.25
+material = SubResource("StandardMaterial3D_1n4eb")
+top_radius = 0.0
 height = 1.0
 
 [sub_resource type="Animation" id="Animation_xxoq3"]
@@ -54,7 +66,7 @@ _data = {
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3v82f"]
 height = 1.47887
-radius = 7.68825
+radius = 32.0
 
 [node name="turret" type="Node3D"]
 script = ExtResource("1_xh8rv")
@@ -81,7 +93,7 @@ mesh = SubResource("CylinderMesh_1rvhn")
 skeleton = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="StaticBody3D/pivot_point/barrel"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.436227, -0.0247915)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.42973, -0.0247915)
 target_position = Vector3(0, 0, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

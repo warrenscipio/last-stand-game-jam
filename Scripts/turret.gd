@@ -9,6 +9,8 @@ var bullet_instance
 var locked_on = false
 var locked_on_body
 var fire_rate = 1
+var body_targets = {}
+var body_order = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +18,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
+	if !body_targets.is_empty():
+		locked_on_body = body_order[0]
+		locked_on = true
 	
 	if locked_on:
 		pivot_point.look_at(locked_on_body.global_position)
@@ -31,17 +38,18 @@ func turret_shot():
 		bullet_instance.transform.basis = ray_cast_3d.global_transform.basis
 		get_node("/root/world").add_child(bullet_instance)
 
-
 func _on_area_3d_body_entered(body):
-	print("body entering")
 	if body.is_in_group("enemy"):
+		body_targets[body] = body
+		body_order.append(body)
 		locked_on_body = body
 		locked_on = true
 
 
 func _on_area_3d_body_exited(body):
-	print("body exiting")
 	if body.is_in_group("enemy"):
+		body_targets.erase(body)
+		body_order.pop_front()
 		locked_on = false
 		locked_on_body = null
 

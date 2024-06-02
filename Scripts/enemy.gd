@@ -7,6 +7,7 @@ var health = 2
 
 @export var player_path := "/root/world/NavigationRegion3D/player"
 @onready var navigation_agent_3d = $NavigationAgent3D
+@onready var gpu_particles_3d = $GPUParticles3D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,11 +22,14 @@ func _process(delta):
 	var next_nav_point = navigation_agent_3d.get_next_path_position()
 	velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
 	
+	
 	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-	move_and_slide()
+	if !gpu_particles_3d.emitting:
+		move_and_slide()
 
 
 func hit():
 	health -= 1
+	gpu_particles_3d.emitting = true
 	if health <=0:
 		queue_free()
