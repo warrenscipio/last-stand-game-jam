@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkr6sxfmu5ggb"]
+
+[ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_5jjqe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m8tk"]
+albedo_color = Color(1, 0.380392, 1, 1)
+
+[node name="spawner" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344126, 0)
+script = ExtResource("1_5jjqe")
+spawnerCircleRadius = 20
+
+[node name="EnemyNode" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20496, -23.8046)
+material_override = SubResource("StandardMaterial3D_6m8tk")
+
+[node name="TimeBetweenSpawns" type="Timer" parent="."]
+autostart = true
+
+[node name="TotalSpawningTime" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="TimeBetweenSpawns" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TotalSpawningTime" to="." method="_on_total_spawning_time_timeout"]

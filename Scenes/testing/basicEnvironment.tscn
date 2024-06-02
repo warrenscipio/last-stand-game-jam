@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://2f4fewc7a6bc"]
 
-[ext_resource type="PackedScene" uid="uid://c6vk43xiu5l88" path="res://Scenes/player.tscn" id="1_sjqef"]
-[ext_resource type="Texture2D" uid="uid://cfc6c3vmc70bl" path="res://Textures/basicEnvironment/textures/greyGrid.png" id="2_16n0j"]
-[ext_resource type="Texture2D" uid="uid://jecq2yv63a5u" path="res://Textures/basicEnvironment/textures/orangeGrid.png" id="3_qydhc"]
-[ext_resource type="PackedScene" uid="uid://b0dut3low8p51" path="res://Scenes/throwable.tscn" id="4_gtp3n"]
+[ext_resource type="PackedScene" uid="uid://c6vk43xiu5l88" path="res://Scenes/player.tscn" id="1_v0vls"]
+[ext_resource type="Texture2D" uid="uid://cfc6c3vmc70bl" path="res://Textures/basicEnvironment/textures/greyGrid.png" id="2_q03aa"]
+[ext_resource type="Texture2D" uid="uid://jecq2yv63a5u" path="res://Textures/basicEnvironment/textures/orangeGrid.png" id="3_gt5fg"]
+[ext_resource type="PackedScene" uid="uid://b0dut3low8p51" path="res://Scenes/throwable.tscn" id="4_71be6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_if14w"]
 sky_top_color = Color(0.396078, 0.529412, 0.819608, 1)
@@ -22,14 +22,14 @@ fog_enabled = true
 fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kywkq"]
-albedo_texture = ExtResource("2_16n0j")
+albedo_texture = ExtResource("2_q03aa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mn5s"]
-albedo_texture = ExtResource("3_qydhc")
+albedo_texture = ExtResource("3_gt5fg")
 
 [node name="BasicEnvironment" type="Node3D"]
 
-[node name="player" parent="." instance=ExtResource("1_sjqef")]
+[node name="player" parent="." instance=ExtResource("1_v0vls")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -50,6 +50,5 @@ material_override = SubResource("StandardMaterial3D_5mn5s")
 use_collision = true
 radius = 2.0
 
-[node name="Throwable" parent="." instance=ExtResource("4_gtp3n")]
+[node name="Throwable" parent="." instance=ExtResource("4_71be6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21475, -9.87451)
-maxPickupDistance = 10
