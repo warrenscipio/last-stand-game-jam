@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6vk43xiu5l88"]
+[gd_scene load_steps=23 format=3 uid="uid://c6vk43xiu5l88"]
 
 [ext_resource type="Texture2D" uid="uid://cqupl4w17wqdn" path="res://Textures/green_grid.png" id="1_8px2x"]
 [ext_resource type="PackedScene" uid="uid://2ofpufno0t6x" path="res://Scenes/gun.tscn" id="2_vmdxr"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_61bx1"]
+[ext_resource type="PackedScene" uid="uid://do8ytoqvq7qtn" path="res://Scenes/player_hud.tscn" id="4_w10pu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xr3q"]
 
@@ -217,3 +218,5 @@ libraries = {
 }
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="playerHud" parent="." instance=ExtResource("4_w10pu")]

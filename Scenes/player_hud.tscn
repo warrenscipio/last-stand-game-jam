@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://do8ytoqvq7qtn"]
+
+[ext_resource type="Script" path="res://Scripts/player_hud.gd" id="1_6gl1j"]
+[ext_resource type="Texture2D" uid="uid://drotdbehcsua0" path="res://Images/burger.png" id="2_y0qwk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvh88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2y88o"]
+bg_color = Color(0.858824, 0.47451, 0.156863, 1)
+border_color = Color(0, 0, 0.0588235, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="playerHud" type="Node2D"]
+script = ExtResource("1_6gl1j")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -35.0
+offset_right = 8.0
+offset_bottom = -12.0
+text = "X"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-15, -24)
+scale = Vector2(0.0585938, 0.0585937)
+texture = ExtResource("2_y0qwk")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 9.0
+offset_top = -33.0
+offset_right = 49.0
+offset_bottom = -10.0
+text = "0
+"
+
+[node name="burgerBar" type="ProgressBar" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.0
+offset_right = 26.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_vvh88")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2y88o")
+value = 100.0
+show_percentage = false

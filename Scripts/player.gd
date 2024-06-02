@@ -16,6 +16,7 @@ var instance
 @onready var collisionShape = $CollisionShape3D
 @export var z_depth = 30
 @onready var ray_cast_3d = $"../../Camera3D/RayCast3D"
+@onready var player_hud = $playerHud
 
 var SPEED = 5
 const JUMP_VELOCITY = 8
@@ -48,8 +49,11 @@ func _input(event):
 		look_at(ray_cast_3d.get_collision_point())
 		current_mouse_pos = event
 
-
 func _physics_process(delta):
+	
+	var over_player = global_position 
+	over_player
+	player_hud.position = world_cam.unproject_position(global_position) + Vector2(-5,-25)
 	
 	if !animation_player.is_playing():
 		is_locked = false
@@ -61,6 +65,7 @@ func _physics_process(delta):
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().get_parent().add_child(instance)
+			
 	
 	# broadly speaking, the player shouldn't manage the physics of throwing
 	# or activating, deactivating it.

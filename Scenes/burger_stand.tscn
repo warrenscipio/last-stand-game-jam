@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciwybxy7nkc7y"]
+[gd_scene load_steps=7 format=3 uid="uid://ciwybxy7nkc7y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_unwk6"]
 size = Vector3(10.066, 3.04352, 0.5)
@@ -15,6 +15,11 @@ albedo_color = Color(1, 0.65098, 0.309804, 1)
 lightmap_size_hint = Vector2i(79, 86)
 material = SubResource("StandardMaterial3D_etf6q")
 size = Vector3(10, 3, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f53my"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyq8j"]
+bg_color = Color(0.301961, 0.984314, 0.356863, 1)
 
 [node name="burgerStand" type="Node3D"]
 
@@ -48,3 +53,24 @@ shape = SubResource("BoxShape3D_rvwm3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_uv1ns")
 skeleton = NodePath("../../Area3D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="standHealth" type="ProgressBar" parent="CanvasLayer"]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -48.0
+offset_right = 120.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxEmpty_f53my")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xyq8j")
+value = 60.0
