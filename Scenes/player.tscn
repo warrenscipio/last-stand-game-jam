@@ -173,6 +173,11 @@ shape = SubResource("CapsuleShape3D_1xr3q")
 [node name="camera_mount" type="Node3D" parent="."]
 transform = Transform3D(0.999781, 0.0209424, 0, -0.0209424, 0.999781, 0, 0, 0, 1, 0, 5.89, 5.61)
 
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
+transform = Transform3D(1, 0, 0, 0, 0.876265, 0.48183, 0, -0.48183, 0.876265, 0, 0, 0)
+current = true
+size = 5.762
+
 [node name="visuals" type="Node3D" parent="."]
 
 [node name="gun" parent="visuals" instance=ExtResource("2_vmdxr")]
@@ -201,6 +206,11 @@ material_override = SubResource("StandardMaterial3D_rnb67")
 mesh = SubResource("BoxMesh_xfnjh")
 skeleton = NodePath("../..")
 
+[node name="player_light" type="OmniLight3D" parent="visuals/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455275, 0.879929)
+light_color = Color(0.698039, 0.623529, 0, 1)
+light_energy = 0.3
+
 [node name="right_hand" type="MeshInstance3D" parent="visuals"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.673, 0.836166, 0.0252869)
 material_override = SubResource("StandardMaterial3D_g263a")
@@ -216,6 +226,17 @@ root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_l5uhc")
 }
+
+[node name="SpotLight3D" type="SpotLight3D" parent="visuals"]
+transform = Transform3D(1, 0, 0, 0, 0.964193, 0.265203, 0, -0.265203, 0.964193, 0, 1.21679, -0.811506)
+light_color = Color(0.698039, 0.623529, 0, 1)
+light_energy = 10.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 2.0
+light_size = 2.0
+spot_range = 30.0
+spot_attenuation = 0.108819
+spot_angle_attenuation = 0.535887
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
