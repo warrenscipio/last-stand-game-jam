@@ -58,7 +58,7 @@ skeleton = NodePath("../../Area3D")
 
 [node name="standHealth" type="ProgressBar" parent="CanvasLayer"]
 z_index = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

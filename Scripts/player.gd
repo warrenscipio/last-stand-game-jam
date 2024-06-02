@@ -59,12 +59,14 @@ func _physics_process(delta):
 		is_locked = false
 		
 	if Input.is_action_just_pressed("shoot"):
-		if !gun_animation.is_playing():
-			gun_animation.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().get_parent().add_child(instance)
+		if player_hud.burger_count > 0:
+			if !gun_animation.is_playing():
+				gun_animation.play("shoot")
+				instance = bullet.instantiate()
+				instance.position = gun_barrel.global_position
+				instance.transform.basis = gun_barrel.global_transform.basis
+				get_parent().get_parent().add_child(instance)
+				player_hud.burger_count = player_hud.burger_count - 1
 			
 	
 	# broadly speaking, the player shouldn't manage the physics of throwing

@@ -1,6 +1,5 @@
 extends Node3D
-
-const enemyScenePath = "res://Scenes/physics_box.tscn"
+const enemyScenePath = "res://Scenes/enemy.tscn"
 var enemyScene : PackedScene = preload(enemyScenePath)
 
 @export
