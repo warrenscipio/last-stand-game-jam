@@ -4,9 +4,11 @@ signal try_pickup(player)
 signal throw_held_item(throwFromTransform)
 
 var bullet = preload("res://Scenes/bullet.tscn")
-
 var physics_box = preload("res://Scenes/physics_box.tscn")
+var turrent_placement = preload("res://Scenes/turret.tscn")
+
 var instance
+var newTurrentinstance
 @onready var camera_mount = $camera_mount
 @onready var visuals = $visuals
 @onready var animation_player = $visuals/AnimationPlayer
@@ -30,6 +32,8 @@ var is_aiming = false
 var itemHeld = null
 var current_mouse_pos = null
 var isInBurgerStandZone = false
+var buy_mode = false
+
 
 @export var sens_horiz = 0.2
 @export var sens_vert = 0.2
@@ -68,7 +72,6 @@ func _physics_process(delta):
 				instance.transform.basis = gun_barrel.global_transform.basis
 				get_parent().get_parent().add_child(instance)
 				player_hud.burger_count = player_hud.burger_count - 1
-			
 	
 	# broadly speaking, the player shouldn't manage the physics of throwing
 	# or activating, deactivating it.
@@ -80,12 +83,29 @@ func _physics_process(delta):
 		
 	#currently this locks any ongoing animation (toggle)
 	if Input.is_action_just_pressed("interact"):
-		is_locked = !is_locked
+		#check if you have the money and then use the money
+		newTurrentinstance = turrent_placement.instantiate()
+		newTurrentinstance.position = global_position
+		get_parent().get_parent().add_child(newTurrentinstance)
 	
-	if Input.is_action_just_pressed("atk"):
-		if animation_player.current_animation != "atk":
-			animation_player.play("atk")
-			is_locked = true	
+	if Input.is_action_just_pressed("buy_menu"):
+		buy_mode = true
+		is_locked = true
+		player_hud.buy_menu.visible = true
+		
+	if Input.is_action_just_released("buy_menu"):
+		buy_mode = false
+		is_locked = false
+		player_hud.buy_menu.visible = false
+		
+	if buy_mode:
+		if Input.is_action_pressed("left"):
+			player_hud.burger_select.visible = true
+			player_hud.turret_select.visible = false
+		if Input.is_action_pressed("right"):
+			player_hud.turret_select.visible = true
+			player_hud.burger_select.visible = false
+
 			
 	if Input.is_action_pressed("run"):
 		SPEED = running_speed
