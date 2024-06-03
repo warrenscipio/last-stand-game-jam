@@ -15,13 +15,6 @@ func _ready():
 	turret_select.visible = false
 	burger_select.visible = false
 	buy_menu.visible = false
-	pass # Replace with function body.
-	
-func _input(event):
-	if Input.is_action_just_pressed("make_burger"):
-		if burger_count != burger_capacity:
-			burger_bar.value = burger_bar.value + burger_making_speed
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,5 +25,3 @@ func _process(delta):
 		if burger_count < burger_capacity:
 			burger_count = burger_count +1
 			burger_bar.value = 0
-		
-	pass

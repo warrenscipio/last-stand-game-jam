@@ -38,13 +38,15 @@ shadow_enabled = true
 navigation_mesh = SubResource("NavigationMesh_udd5e")
 
 [node name="player" parent="NavigationRegion3D" instance=ExtResource("1_y05gr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67789, 1.31294, 16.7301)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67789, 0.301185, 16.6925)
+collision_layer = 7
+collision_mask = 7
 
 [node name="turret2" parent="NavigationRegion3D" instance=ExtResource("3_ynx2s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202629, 0.66019, 9.792)
 
 [node name="turret" parent="NavigationRegion3D" instance=ExtResource("3_ynx2s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9232, 1.40917, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90881, 1.40917, 19.994)
 
 [node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
 use_collision = true
