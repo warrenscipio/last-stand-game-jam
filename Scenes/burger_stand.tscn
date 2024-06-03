@@ -52,7 +52,7 @@ shape = SubResource("BoxShape3D_rvwm3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_uv1ns")
-skeleton = NodePath("../../Area3D")
+skeleton = NodePath("")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -31,7 +31,6 @@ func spawnUnit():
 	var rng := RandomNumberGenerator.new()
 	var randX := rng.randf_range(-1.0, 1.0)
 	var randZ := rng.randf_range(-1.0, 1.0)
-	
 	var randomVectorDir = Vector2(randX, randZ).normalized()
 	#scale vector by radius, so that enemies are placed at the bounds  of the circle
 	var scaledVectorDir = Vector3(randomVectorDir.x * spawnerCircleRadius, 3, randomVectorDir.y * spawnerCircleRadius)

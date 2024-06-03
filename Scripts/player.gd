@@ -4,9 +4,11 @@ signal try_pickup(player)
 signal throw_held_item(throwFromTransform)
 
 var bullet = preload("res://Scenes/bullet.tscn")
-
 var physics_box = preload("res://Scenes/physics_box.tscn")
+var turrent_placement = preload("res://Scenes/turret.tscn")
+
 var instance
+var newTurrentinstance
 @onready var camera_mount = $camera_mount
 @onready var visuals = $visuals
 @onready var animation_player = $visuals/AnimationPlayer
@@ -79,7 +81,9 @@ func _physics_process(delta):
 		
 	#currently this locks any ongoing animation (toggle)
 	if Input.is_action_just_pressed("interact"):
-		is_locked = !is_locked
+		newTurrentinstance = turrent_placement.instantiate()
+		newTurrentinstance.position = global_position
+		get_parent().get_parent().add_child(newTurrentinstance)
 	
 	if Input.is_action_just_pressed("atk"):
 		if animation_player.current_animation != "atk":

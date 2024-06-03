@@ -177,6 +177,7 @@ transform = Transform3D(0.999781, 0.0209424, 0, -0.0209424, 0.999781, 0, 0, 0, 1
 
 [node name="gun" parent="visuals" instance=ExtResource("2_vmdxr")]
 transform = Transform3D(1, 0, 0, 0, 0.999154, 0.0411437, 0, -0.0411437, 0.999154, -0.0113652, 1.29877, -0.492323)
+visible = false
 
 [node name="body" type="MeshInstance3D" parent="visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

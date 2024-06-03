@@ -17,7 +17,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	#if we still have targets lock on to the closest
 	if !body_targets.is_empty():
 		locked_on_body = getClosestEnemy()
@@ -37,9 +36,11 @@ func getClosestEnemy():
 	for key in body_targets:
 		var value = body_targets[key]
 		var distance = self.global_position.distance_to(value.global_position)
-		if closestEnemy == null or (distance < minDistance):
-			minDistance = distance
-			closestEnemy = value
+		#only aim at targets that need to be shot
+		if value.health > 0:
+			if closestEnemy == null or (distance < minDistance):
+				minDistance = distance
+				closestEnemy = value
 		
 	return closestEnemy
 
