@@ -29,6 +29,7 @@ var is_locked = false
 var is_aiming = false
 var itemHeld = null
 var current_mouse_pos = null
+var isInBurgerStandZone = false
 
 @export var sens_horiz = 0.2
 @export var sens_vert = 0.2
@@ -107,7 +108,10 @@ func _physics_process(delta):
 			
 		if Input.is_action_just_released("aim"):
 			is_aiming = false
-
+		
+		if Input.is_action_just_pressed("make_burger") && isInBurgerStandZone:
+			if player_hud.burger_count != player_hud.burger_capacity:
+					player_hud.burger_bar.value = player_hud.burger_bar.value + 20
 				
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.

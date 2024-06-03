@@ -8,7 +8,8 @@ var bullet = load("res://Scenes/bullet.tscn")
 var bullet_instance
 var locked_on = false
 var locked_on_body
-var fire_rate = 1
+@export 
+var fire_rate = 0
 var body_targets = {}
 
 # Called when the node enters the scene tree for the first time.
