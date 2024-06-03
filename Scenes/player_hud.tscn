@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://do8ytoqvq7qtn"]
+[gd_scene load_steps=7 format=3 uid="uid://do8ytoqvq7qtn"]
 
 [ext_resource type="Script" path="res://Scripts/player_hud.gd" id="1_6gl1j"]
 [ext_resource type="Texture2D" uid="uid://drotdbehcsua0" path="res://Images/burger.png" id="2_y0qwk"]
+[ext_resource type="Texture2D" uid="uid://b6tx3my6rvgtw" path="res://Images/turrent_pic.png" id="3_2t2x8"]
+[ext_resource type="Texture2D" uid="uid://di4d0lcfwxr6j" path="res://Images/burgers_pic.png" id="4_wpxji"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvh88"]
 
@@ -53,3 +55,36 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_vvh88")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2y88o")
 value = 100.0
 show_percentage = false
+
+[node name="buyMenu" type="Node2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.5, 0.5)
+
+[node name="background" type="ColorRect" parent="buyMenu"]
+offset_left = -179.0
+offset_top = -148.0
+offset_right = 162.0
+offset_bottom = -7.0
+color = Color(0.0784314, 0.101961, 0.105882, 1)
+
+[node name="turret_select" type="ColorRect" parent="buyMenu"]
+offset_left = -1.0
+offset_top = -147.0
+offset_right = 162.0
+offset_bottom = -6.0
+
+[node name="burger_select" type="ColorRect" parent="buyMenu"]
+offset_left = -178.0
+offset_top = -147.0
+offset_right = 1.0
+offset_bottom = -7.0
+
+[node name="Sprite2D" type="Sprite2D" parent="buyMenu"]
+position = Vector2(80, -75.194)
+scale = Vector2(0.960526, 0.981048)
+texture = ExtResource("3_2t2x8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="buyMenu"]
+position = Vector2(-86, -77)
+scale = Vector2(0.764085, 0.846397)
+texture = ExtResource("4_wpxji")
