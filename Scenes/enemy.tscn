@@ -1,6 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://duylb1jtojuxe"]
+[gd_scene load_steps=14 format=3 uid="uid://duylb1jtojuxe"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_r3u4v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qao5c"]
+albedo_color = Color(0.199519, 0.584826, 0.77414, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1rucn"]
+material = SubResource("StandardMaterial3D_qao5c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a4kqf"]
+albedo_color = Color(0.858824, 0.847059, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gj5db"]
+material = SubResource("StandardMaterial3D_a4kqf")
+radius = 0.1
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q24jc"]
+albedo_color = Color(0, 0, 0.027451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wnq51"]
+material = SubResource("StandardMaterial3D_q24jc")
+top_radius = 0.3
+bottom_radius = 0.2
+height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmb83"]
 albedo_color = Color(0.731695, 0, 0.0623486, 1)
@@ -32,7 +55,21 @@ script = ExtResource("1_r3u4v")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="blueBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_1rucn")
+skeleton = NodePath("../redBody")
+
+[node name="eyes" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -0.007, 0.548, -0.4)
+mesh = SubResource("CapsuleMesh_gj5db")
+skeleton = NodePath("../redBody")
+
+[node name="mouth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.0062502, 0.102803, -0.3105)
+mesh = SubResource("CylinderMesh_wnq51")
+skeleton = NodePath("../redBody")
+
+[node name="redBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_0joqx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

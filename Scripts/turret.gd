@@ -10,7 +10,6 @@ var locked_on = false
 var locked_on_body
 var fire_rate = 1
 var body_targets = {}
-var body_order = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,16 +18,30 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	
+	#if we still have targets lock on to the closest
 	if !body_targets.is_empty():
-		locked_on_body = body_order[0]
+		locked_on_body = getClosestEnemy()
 		locked_on = true
 	
 	if locked_on:
-		pivot_point.look_at(locked_on_body.global_position)
-		pivot_point.rotation.x = 0
-		pivot_point.rotation.z = 0
-	
+		#check if the other turret killed this enemy mid process
+		if is_instance_valid(locked_on_body):
+			pivot_point.look_at(locked_on_body.global_position)
+			pivot_point.rotation.x = 0
+			pivot_point.rotation.z = 0
+			
+#return the closest enemy to the turrent
+func getClosestEnemy():
+	var closestEnemy
+	var minDistance = 1000
+	for key in body_targets:
+		var value = body_targets[key]
+		var distance = self.global_position.distance_to(value.global_position)
+		if closestEnemy == null or (distance < minDistance):
+			minDistance = distance
+			closestEnemy = value
+		
+	return closestEnemy
 
 func turret_shot():
 	if !animation_player.is_playing():
@@ -41,15 +54,12 @@ func turret_shot():
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("enemy"):
 		body_targets[body] = body
-		body_order.append(body)
 		locked_on_body = body
 		locked_on = true
-
 
 func _on_area_3d_body_exited(body):
 	if body.is_in_group("enemy"):
 		body_targets.erase(body)
-		body_order.pop_front()
 		locked_on = false
 		locked_on_body = null
 

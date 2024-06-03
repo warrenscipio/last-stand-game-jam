@@ -14,6 +14,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += transform.basis * Vector3(0,0, -speed) * delta
+	#after emitting delete bullet
+	await get_tree().create_timer(3.0).timeout
+	queue_free()
 		
 
 #using Timer signal to delete bullet after 10 seconds of flying through the air
@@ -29,9 +32,8 @@ func _on_burger_body_entered(body):
 	if body.is_in_group("enemy"):
 		print("hit called")
 		body.hit()
+		queue_free()
 	
-	#after emitting delete bullet
-	await get_tree().create_timer(1.0).timeout
-	queue_free()
+
 	
 	pass # Replace with function body.

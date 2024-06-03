@@ -39,7 +39,8 @@ func spawnUnit():
 	var enemy : Node3D = enemyScene.instantiate()
 	get_tree().get_current_scene().add_child(enemy)
 	enemy.set_global_position(scaledVectorDir)
-	
+	enemy.spawnPosition = scaledVectorDir
+	print("spawner:",enemy.spawnPosition)
 	
 func _on_timer_timeout():
 	spawnUnit()
