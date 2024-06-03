@@ -19,7 +19,7 @@ material_override = SubResource("StandardMaterial3D_6m8tk")
 autostart = true
 
 [node name="TotalSpawningTime" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 3600.0
 autostart = true
 
 [connection signal="timeout" from="TimeBetweenSpawns" to="." method="_on_timer_timeout"]

@@ -19,12 +19,13 @@ var newTurrentinstance
 @export var z_depth = 30
 @onready var ray_cast_3d = $"../../Camera3D/RayCast3D"
 @onready var player_hud = $playerHud
+@onready var burger_stand = $"../burgerStand"
 
 var SPEED = 5
 const JUMP_VELOCITY = 8
 
 var walking_speed = 4.0
-var running_speed = 45.0
+var running_speed = 7.0
 var aiming_speed = 2.0
 #if I need to lock the character in an animation 
 var is_locked = false
@@ -33,6 +34,8 @@ var itemHeld = null
 var current_mouse_pos = null
 var isInBurgerStandZone = false
 var buy_mode = false
+var player_money = 0
+var turrent_supply = 0
 
 
 @export var sens_horiz = 0.2
@@ -83,10 +86,12 @@ func _physics_process(delta):
 		
 	#currently this locks any ongoing animation (toggle)
 	if Input.is_action_just_pressed("interact"):
-		#check if you have the money and then use the money
-		newTurrentinstance = turrent_placement.instantiate()
-		newTurrentinstance.position = global_position
-		get_parent().get_parent().add_child(newTurrentinstance)
+		#check if you have a turret
+		if turrent_supply > 0:
+			turrent_supply = turrent_supply - 1
+			newTurrentinstance = turrent_placement.instantiate()
+			newTurrentinstance.position = global_position
+			get_parent().get_parent().add_child(newTurrentinstance)
 	
 	if Input.is_action_just_pressed("buy_menu"):
 		buy_mode = true
@@ -96,9 +101,23 @@ func _physics_process(delta):
 	if Input.is_action_just_released("buy_menu"):
 		buy_mode = false
 		is_locked = false
+		
 		player_hud.buy_menu.visible = false
 		
-	if buy_mode:
+		if player_hud.burger_select.visible:
+			if burger_stand.player_money >= 10:
+				burger_stand.player_money = burger_stand.player_money - 10
+				player_hud.burger_capacity = player_hud.burger_capacity + 5
+				player_hud.burger_making_speed = player_hud.burger_making_speed + 20
+				
+		if player_hud.turret_select.visible:
+			if burger_stand.player_money >= 20:
+				burger_stand.player_money = burger_stand.player_money - 20
+				turrent_supply = turrent_supply + 1 
+				
+			
+		
+	if buy_mode :
 		if Input.is_action_pressed("left"):
 			player_hud.burger_select.visible = true
 			player_hud.turret_select.visible = false

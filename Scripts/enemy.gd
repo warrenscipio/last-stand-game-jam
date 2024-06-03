@@ -6,7 +6,7 @@ var health = 2
 var spawnPosition
 
 
-@export var target_path := "/root/world/NavigationRegion3D/marketStand"
+@export var target_path := "/root/world/NavigationRegion3D/burgerStand"
 @onready var navigation_agent_3d = $NavigationAgent3D
 @onready var gpu_particles_3d = $GPUParticles3D
 @onready var mouth = $mouth
@@ -32,7 +32,6 @@ func _process(delta):
 	
 	var next_nav_point = navigation_agent_3d.get_next_path_position()
 	velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
-	
 	look_at(Vector3(target.global_position.x, global_position.y, target.global_position.z), Vector3.UP)
 	if !gpu_particles_3d.emitting:
 		move_and_slide()
@@ -41,8 +40,11 @@ func hit():
 	health -= 1
 	gpu_particles_3d.emitting = true
 	if health <=0:
+		if red_body.visible:
+			target.player_money = target.player_money + 1
 		blue_body.visible = true
 		red_body.visible = false
 		mouth.visible = false
-		eyes.position.z = -0.45 
+		eyes.position.z = -0.45
+	
 		#queue_free()

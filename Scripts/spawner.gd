@@ -42,6 +42,7 @@ func spawnUnit():
 	print("spawner:",enemy.spawnPosition)
 	
 func _on_timer_timeout():
+	timeBetweenSpawns = timeBetweenSpawns - 1/3600
 	spawnUnit()
 
 func _on_total_spawning_time_timeout():

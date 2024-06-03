@@ -2,6 +2,10 @@ extends Node3D
 
 @onready
 var standHealthBar = $CanvasLayer/standHealth
+var player_money = 0
+@onready var money_display = $CanvasLayer/Label2
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -9,6 +13,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	money_display.text = str(player_money)
+	
 	pass
 	
 func takeDamage():
@@ -24,8 +30,6 @@ func _on_burger_building_zone_body_entered(body: Node3D):
 		# destroy enemy
 		takeDamage()
 		body.queue_free()
-	
-
 
 func _on_burger_building_zone_body_exited(body: Node3D):
 	print(body.name + "exited. ")
