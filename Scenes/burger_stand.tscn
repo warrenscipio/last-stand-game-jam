@@ -27,6 +27,7 @@ bg_color = Color(0.301961, 0.984314, 0.356863, 1)
 size = Vector3(13.0539, 4.20471, 9.45911)
 
 [node name="burgerStand" type="Node3D"]
+visible = false
 script = ExtResource("1_tsa3m")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]

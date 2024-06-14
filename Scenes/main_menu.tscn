@@ -1,12 +1,124 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctlf6hr8vmss7"]
+[gd_scene load_steps=12 format=3 uid="uid://ctlf6hr8vmss7"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_csb8v"]
+[ext_resource type="Texture2D" uid="uid://bpag2px6lu2dv" path="res://Images/burger menu 2-export.png" id="2_6nbfv"]
+[ext_resource type="Script" path="res://Scenes/buttonHover.gd" id="3_js1h6"]
+[ext_resource type="Script" path="res://Scenes/options.gd" id="4_gfpar"]
+[ext_resource type="Script" path="res://Scenes/credits.gd" id="5_4k3l4"]
+[ext_resource type="Script" path="res://Scenes/exit.gd" id="6_2ugt3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2r40"]
+bg_color = Color(0.6, 0.4, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.635602, 0.331872, 0.0357984, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epe1x"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.490196, 0.329412, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0tu1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.490196, 0.329412, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m47hv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.490196, 0.329412, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_juf1n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.490196, 0.329412, 0.0862745, 1)
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 6.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_csb8v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 649.0
+color = Color(0.00784314, 0.533333, 0.819608, 1)
+
+[node name="BurgerMenu2-export" type="Sprite2D" parent="."]
+position = Vector2(591, 327)
+scale = Vector2(0.346875, 0.3125)
+texture = ExtResource("2_6nbfv")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 493.0
+offset_top = 249.0
+offset_right = 726.0
+offset_bottom = 305.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_u2r40")
+theme_override_styles/focus = SubResource("StyleBoxFlat_epe1x")
+flat = true
+script = ExtResource("3_js1h6")
+
+[node name="options" type="Button" parent="."]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 298.0
+offset_right = 722.0
+offset_bottom = 359.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_f0tu1")
+flat = true
+script = ExtResource("4_gfpar")
+
+[node name="credits" type="Button" parent="."]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 358.0
+offset_right = 727.0
+offset_bottom = 409.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_m47hv")
+flat = true
+script = ExtResource("5_4k3l4")
+
+[node name="exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 493.0
+offset_top = 411.0
+offset_right = 726.0
+offset_bottom = 463.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_juf1n")
+flat = true
+script = ExtResource("6_2ugt3")
+
+[connection signal="mouse_entered" from="Start" to="Start" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Start" to="Start" method="_on_mouse_exited"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="options" to="options" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="options" to="options" method="_on_mouse_exited"]
+[connection signal="pressed" from="options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="credits" to="credits" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="credits" to="credits" method="_on_mouse_exited"]
+[connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="exit" to="exit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="exit" to="exit" method="_on_mouse_exited"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

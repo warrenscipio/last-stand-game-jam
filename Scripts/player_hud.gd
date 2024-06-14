@@ -2,7 +2,7 @@ extends Node2D
 @onready var label = $Label
 @onready var burger_bar = $burgerBar
 @onready var burger_count = 0
-@export var burger_capacity = 5
+@export var burger_capacity = 10
 var burger_making_speed = 20
 @onready var turret_select = $buyMenu/turret_select
 @onready var burger_select = $buyMenu/burger_select

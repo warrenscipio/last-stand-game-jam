@@ -20,6 +20,7 @@ var newTurrentinstance
 @onready var ray_cast_3d = $"../../Camera3D/RayCast3D"
 @onready var player_hud = $playerHud
 @onready var burger_stand = $"../burgerStand"
+var burger_making_speed = 20
 
 var SPEED = 5
 const JUMP_VELOCITY = 8
@@ -108,7 +109,7 @@ func _physics_process(delta):
 			if burger_stand.player_money >= 10:
 				burger_stand.player_money = burger_stand.player_money - 10
 				player_hud.burger_capacity = player_hud.burger_capacity + 5
-				player_hud.burger_making_speed = player_hud.burger_making_speed + 20
+				burger_making_speed = burger_making_speed + 20
 				
 		if player_hud.turret_select.visible:
 			if burger_stand.player_money >= 20:
@@ -150,7 +151,7 @@ func _physics_process(delta):
 		
 		if Input.is_action_just_pressed("make_burger") && isInBurgerStandZone:
 			if player_hud.burger_count != player_hud.burger_capacity:
-					player_hud.burger_bar.value = player_hud.burger_bar.value + 20
+					player_hud.burger_bar.value = player_hud.burger_bar.value + burger_making_speed
 				
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.

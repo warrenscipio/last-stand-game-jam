@@ -5,7 +5,6 @@ const SPEED = 3.0
 var health = 2
 var spawnPosition
 
-
 @export var target_path := "/root/world/NavigationRegion3D/burgerStand"
 @onready var navigation_agent_3d = $NavigationAgent3D
 @onready var gpu_particles_3d = $GPUParticles3D
@@ -33,7 +32,7 @@ func _process(delta):
 	var next_nav_point = navigation_agent_3d.get_next_path_position()
 	velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
 	look_at(Vector3(target.global_position.x, global_position.y, target.global_position.z), Vector3.UP)
-	if !gpu_particles_3d.emitting:
+	if !gpu_particles_3d.emitting or blue_body.visible:
 		move_and_slide()
 
 func hit():
@@ -46,5 +45,5 @@ func hit():
 		red_body.visible = false
 		mouth.visible = false
 		eyes.position.z = -0.45
-	
-		#queue_free()
+		await get_tree().create_timer(5.0).timeout
+		queue_free()
